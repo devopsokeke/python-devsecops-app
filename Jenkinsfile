@@ -32,7 +32,7 @@ pipeline {
             steps {
                 parallel (
                     "Static Analysis (Bandit)": {
-                        sh "source $VENV_DIR/bin/activate && bandit -r ."
+                        sh ". $VENV_DIR/bin/activate && bandit -r ."
                     },
                     "Secrets Scanning (GitLeaks)": {
                         sh "gitleaks detect --source . --verbose"
