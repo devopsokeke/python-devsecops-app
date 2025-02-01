@@ -2,4 +2,3 @@ Flask
 pytest
 requests
 bandit
-gitleaks
