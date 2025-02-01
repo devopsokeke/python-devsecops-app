@@ -12,7 +12,12 @@ pipeline {
                 checkout scm
             }
         }
-
+        stage('Check Shell') {
+            steps {
+                sh 'echo "Current Shell: $SHELL"'
+                sh 'ps -p $$'
+            }
+        }
         stage('Setup Python Environment') {
             steps {
                 sh '''
