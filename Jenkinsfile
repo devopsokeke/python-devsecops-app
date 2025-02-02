@@ -43,7 +43,11 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh ". $VENV_DIR/bin/activate && pytest tests/"
+                sh """
+                . $VENV_DIR/bin/activate
+                pip install -r requirements.txt  # Ensure dependencies are installed
+                PYTHONPATH=. pytest tests/
+                """
             }
         }
 
