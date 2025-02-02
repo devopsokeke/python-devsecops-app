@@ -1,4 +1,5 @@
 import pytest
+import unittest
 from app import app
 
 @pytest.fixture
@@ -7,12 +8,15 @@ def client():
     with app.test_client() as client:
         yield client
 
-def test_home(client):
-    response = client.get('/')
-    assert response.status_code == 200
-    assert b"Welcome to the DevSecOps Python App!" in response.data
+class TestApp(unittest.TestCase):
+    def test_home(self):
+        client = app.test_client()
+        response = client.get('/')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"Welcome to the DevSecOps Python App!", response.data)
 
-def test_health(client):
-    response = client.get('/health')
-    assert response.status_code == 200
-    assert b'"status":"healthy"' in response.data
+    def test_health(self):
+        client = app.test_client()
+        response = client.get('/health')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'"status":"healthy"', response.data)
