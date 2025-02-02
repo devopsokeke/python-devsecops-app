@@ -54,7 +54,7 @@ pipeline {
         stage('Build & Run Application') {
             steps {
                 sh "docker build -t my-python-app:${BUILD_NUMBER} ."
-                sh "docker run -d -p 5000:5000 --name my-app my-python-app:${BUILD_NUMBER}"
+                sh "docker run -d -p 5001:5000 --name my-app my-python-app:${BUILD_NUMBER}"
                 sleep(time: 10, unit: 'SECONDS')
             }
         }
@@ -93,7 +93,7 @@ pipeline {
     post {
         always {
             sh "docker stop my-app || true"
-            sh "docker rm my-app || true"
+            sh "docker rm -f my-app || true"
             archiveArtifacts artifacts: 'zap_report.html', fingerprint: true
             cleanWs()
         }
