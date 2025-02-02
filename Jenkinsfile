@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         VENV_DIR = "venv"
-        APP_URL = "http://localhost:5000"
+        APP_URL = "http://localhost:5001"
     }
 
     stages {
