@@ -43,7 +43,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh "source $VENV_DIR/bin/activate && pytest tests/"
+                sh ". $VENV_DIR/bin/activate && pytest tests/"
             }
         }
 
