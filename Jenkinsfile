@@ -74,8 +74,8 @@ pipeline {
             }
             steps {
                 withDockerRegistry([credentialsId: 'docker-hub-credentials', url: 'https://index.docker.io/v1/']) {
-                    sh "docker tag my-python-app:${BUILD_NUMBER} my-docker-repo/my-python-app:latest"
-                    sh "docker push my-docker-repo/my-python-app:latest"
+                    sh "docker tag my-python-app:${BUILD_NUMBER} devopsokeke/my-python-app:latest"
+                    sh "docker push devopsokeke/my-python-app:latest"
                 }
             }
         }
