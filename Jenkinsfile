@@ -62,7 +62,8 @@ pipeline {
         stage('DAST Security Test (OWASP ZAP)') {
             steps {
                 sh '''
-                docker run --rm -v $(pwd):/zap/wrk:rw -t owasp/zap2docker-stable zap-baseline.py \
+                docker pull ghcr.io/zaproxy/zaproxy:stable
+                docker run --rm -v $(pwd):/zap/wrk:rw -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py \
                 -t $APP_URL -r zap_report.html || true
                 '''
             }
